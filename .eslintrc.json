@@ -1,0 +1,68 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "no-console": "error",
+    "complexity": ["error", 10],
+    "no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": true }],
+    "no-await-in-loop": 1,
+    "no-return-await": 1,
+    "no-eval": 1,
+    "no-implied-eval": 1,
+    "prefer-promise-reject-errors": 1,
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": true,
+        "argsIgnorePattern": "props",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "@next/next/no-img-element": "error",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "prefer-template": "error",
+    "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/member-ordering": "warn",
+    "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/prefer-optional-chain": "warn",
+    "@typescript-eslint/prefer-string-starts-ends-with": "error",
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "types": {
+          "{}": false
+        },
+        "extendDefaults": true
+      }
+    ],
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "func-style": ["error", "expression", { "allowArrowFunctions": true }]
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

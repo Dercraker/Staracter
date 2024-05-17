@@ -1,8 +1,5 @@
-import type {
-  MagicLinkSchemaType} from '@/features/auth/signIn/MagicLink.schema';
-import {
-  MagicLinkSchema
-} from '@/features/auth/signIn/MagicLink.schema';
+import type { MagicLinkSchemaType } from '@/features/auth/signIn/MagicLink.schema';
+import { MagicLinkSchema } from '@/features/auth/signIn/MagicLink.schema';
 import { getServerUrl } from '@/utils/server-url';
 import { Button, Stack, Text, TextInput } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';

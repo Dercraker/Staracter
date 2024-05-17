@@ -1,10 +1,7 @@
 'use client';
 
-import type {
-  SignUpCredentialSchemaType} from '@/features/auth/signUp/SignUpCredential.schema';
-import {
-  SignUpCredentialSchema
-} from '@/features/auth/signUp/SignUpCredential.schema';
+import type { SignUpCredentialSchemaType } from '@/features/auth/signUp/SignUpCredential.schema';
+import { SignUpCredentialSchema } from '@/features/auth/signUp/SignUpCredential.schema';
 import { signUpAction } from '@/features/auth/signUp/signup.action';
 import useNotify from '@/hook/useNotify';
 import { Button, PasswordInput, Stack, TextInput } from '@mantine/core';

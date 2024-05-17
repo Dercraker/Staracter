@@ -1,10 +1,7 @@
 'use client';
 
-import type {
-  CredentialSchemaType} from '@/features/auth/signIn/Credentials.schema';
-import {
-  CredentialSchema
-} from '@/features/auth/signIn/Credentials.schema';
+import type { CredentialSchemaType } from '@/features/auth/signIn/Credentials.schema';
+import { CredentialSchema } from '@/features/auth/signIn/Credentials.schema';
 import { Button, Group, Stack, Text, TextInput } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useLocalStorage } from '@mantine/hooks';

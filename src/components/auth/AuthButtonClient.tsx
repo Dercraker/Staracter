@@ -14,7 +14,7 @@ const AuthButtonClient = ({ buttonProps }: AuthButtonClientProps) => {
   if (session.status === 'authenticated' && session.data.user.id)
     return <LoggedInButton user={session.data.user} />;
 
-  return <SignInButton buttonProps={buttonProps} />;
+  return <SignInButton {...buttonProps} />;
 };
 
 export default AuthButtonClient;

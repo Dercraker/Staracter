@@ -25,7 +25,8 @@ const ProviderButton = (props: ProviderButtonProps) => {
           fullWidth
           leftSection={<IconBrandDiscord />}
           my="xs"
-          onClick={() => oAuthSignInMutation.mutate()}>
+          onClick={() => oAuthSignInMutation.mutate()}
+        >
           Sign in with Discord
         </Button>
       )}
@@ -34,7 +35,8 @@ const ProviderButton = (props: ProviderButtonProps) => {
           fullWidth
           leftSection={<IconBrandGithub />}
           my="xs"
-          onClick={() => oAuthSignInMutation.mutate()}>
+          onClick={() => oAuthSignInMutation.mutate()}
+        >
           Sign in with Github
         </Button>
       )}

@@ -7,7 +7,7 @@ import type { UserDropDownVariant } from './UserDropDown';
 type AuthButtonProps = {
   buttonProps?: ButtonProps;
   loggedButtonVariant?: UserDropDownVariant;
-}
+};
 const AuthButton = async ({
   buttonProps,
   loggedButtonVariant,
@@ -19,7 +19,7 @@ const AuthButton = async ({
       <LoggedInButton user={user} loggedButtonVariant={loggedButtonVariant} />
     );
 
-  return <SignInButton buttonProps={buttonProps} />;
+  return <SignInButton {...buttonProps} />;
 };
 
 export default AuthButton;

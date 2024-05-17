@@ -6,7 +6,7 @@ import classes from './LinksGroup.module.css';
 export type LinksGroupProps = {
   title: string;
   data: NavigationLinks;
-}
+};
 
 const LinksGroup = ({ data, title }: LinksGroupProps) => {
   const links = data.map((link, index) => (

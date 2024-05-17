@@ -1,14 +1,11 @@
-import { env } from '@/lib/env/server';
-import { prisma } from '@/lib/prisma';
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import type { User } from '@prisma/client';
 import type { Session } from 'next-auth';
 import NextAuth from 'next-auth';
+import { env } from '../env/server';
+import { prisma } from '../prisma';
 import { setupResendCustomer, setupStripeCustomer } from './auth-config-setup';
-import {
-  credentialsOverrideJwt,
-  credentialsSignInCallback,
-} from './credentialsProvider';
 import { getNextAuthConfigProviders } from './getNextAuthConfigProvider';
 
 export const { handlers, auth: baseAuth } = NextAuth((req) => ({
@@ -18,10 +15,7 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
     error: '/auth/error',
     verifyRequest: '/auth/verify-request',
     // ℹ️ Add this line if you want to add an onboarding page
-    newUser: '/auth/new-user',
-  },
-  theme: {
-    logo: '/images/logo-text.png',
+    // newUser: "/auth/new-user",
   },
   adapter: PrismaAdapter(prisma),
   providers: getNextAuthConfigProviders(),
@@ -47,7 +41,7 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
   },
   events: {
     // 🔑 Add this line and the import to add credentials provider
-    signIn: credentialsSignInCallback(req),
+    // signIn: credentialsSignInCallback(req),
     createUser: async (message) => {
       const user = message.user;
 
@@ -70,5 +64,5 @@ export const { handlers, auth: baseAuth } = NextAuth((req) => ({
     },
   },
   // 🔑 Add this line and the import to add credentials provider
-  jwt: credentialsOverrideJwt,
+  // jwt: credentialsOverrideJwt,
 }));

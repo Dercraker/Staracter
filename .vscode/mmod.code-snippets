@@ -1,0 +1,18 @@
+{
+  "Create Mantine Modal": {
+    "prefix": "mmod",
+    "body": [
+      "<ModalRoot opened={opened} onClose={close} centered>",
+      "  <ModalOverlay backgroundOpacity={0.55} blur={3} />",
+      "  <ModalContent>",
+      "    <ModalHeader>",
+      "      <ModalTitle>Modal title</ModalTitle>",
+      "      <ModalCloseButton icon={<IconX />} />",
+      "    </ModalHeader>",
+      "    <ModalBody>Modal content</ModalBody>",
+      "  </ModalContent>",
+      "</ModalRoot>",
+    ],
+    "description": "Create Mantine Modal",
+  },
+}

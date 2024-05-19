@@ -24,6 +24,28 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.discordapp.com',
+        port: '',
+        pathname: '/avatars/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.dercraker.fr',
+        port: '',
+        pathname: '/staracter-dev/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.dercraker.fr',
+        port: '',
+        pathname: '/staracter/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

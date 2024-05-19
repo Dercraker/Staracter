@@ -9,7 +9,8 @@ import { signOut } from 'next-auth/react';
 
 export const LogoutButton = () => {
   const { mutateAsync } = useMutation({
-    mutationFn: () => signOut({ callbackUrl: LINKS.Landing.Landing.href }),
+    mutationFn: async () =>
+      await signOut({ callbackUrl: LINKS.Landing.Landing.href }),
     onError: (error) => {
       logger.error('Error while User try logout', error.message, error.stack, {
         label: 'Logout',

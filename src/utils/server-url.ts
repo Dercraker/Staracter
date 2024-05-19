@@ -21,3 +21,9 @@ export const getServerUrl = () => {
   // If we are in development, we return the localhost URL.
   return 'http://localhost:3000';
 };
+
+export const getMinioUrl = () => {
+  return process.env.NODE_ENV === 'development'
+    ? 'https://s3.dercraker.fr/staracter-dev/'
+    : 'https://s3.dercraker.fr/staracter/';
+};

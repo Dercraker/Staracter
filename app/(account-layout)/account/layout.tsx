@@ -3,7 +3,7 @@ import type { LayoutParams } from '@/types/next';
 import { Paper, Text, Title } from '@mantine/core';
 import { VerifyEmailButton } from './verify-email/_component/VerifyEmailButton';
 
-const RouteLayout = async (props: LayoutParams) => {
+const RouteLayout = async ({ children }: LayoutParams) => {
   const user = await requiredAuth();
 
   const isEmailNotVerified = user.email && !user.emailVerified;
@@ -16,7 +16,7 @@ const RouteLayout = async (props: LayoutParams) => {
           <VerifyEmailButton />
         </Paper>
       ) : null}
-      {props.children}
+      {children}
     </>
   );
 };

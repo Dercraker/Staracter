@@ -11,6 +11,7 @@ import type { PropsWithChildren } from 'react';
 import './globals.scss';
 // import '@mantine/core/styles.css';
 import '@mantine/core/styles.layer.css';
+import '@mantine/dropzone/styles.css';
 import '@mantine/notifications/styles.css';
 
 export const Providers = ({ children }: PropsWithChildren) => {

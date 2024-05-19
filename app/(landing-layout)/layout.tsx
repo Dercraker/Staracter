@@ -7,15 +7,14 @@ const RouteLayout = ({ children }: LayoutParams) => {
     <AppShell header={{ height: 60 }}>
       <LandingHeader />
       <AppShellMain
-        style={
-          {
-            //TODO: UNCOMMENT THIS
-            // background: 'var(--mantine-color-dark-7)',
-            // position: 'relative',
-            // zIndex: 1,
-            // marginBottom: '400px',
-          }
-        }
+        style={{
+          //TODO: UNCOMMENT THIS
+          // background: 'var(--mantine-color-dark-7)',
+          // position: 'relative',
+          // zIndex: 1,
+          // marginBottom: '400px',
+          marginBottom: '200px',
+        }}
       >
         {children}
       </AppShellMain>

@@ -17,7 +17,7 @@ const RoutePage = () => {
     >
       <Modal.Overlay backgroundOpacity={0.55} blur={3} />
       <Modal.Content>
-        <SignInCard withBorder w={{ base: '90vw', xs: '50vw' }} py="xl" />
+        <SignInCard withBorder w={{ base: '90vw', xs: '32em' }} py="xl" />
       </Modal.Content>
     </Modal.Root>
   );

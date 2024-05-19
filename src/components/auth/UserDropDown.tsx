@@ -18,6 +18,7 @@ import {
   IconChevronRight,
   IconSettings,
   IconShieldLock,
+  IconUsers,
 } from '@tabler/icons-react';
 import type { User } from 'next-auth';
 import Link from 'next/link';
@@ -101,6 +102,18 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
             href={LINKS.Dashboard.Dashboard.href}
           >
             Dashboard
+          </MenuItem>
+          <MenuItem
+            leftSection={
+              <IconUsers
+                style={{ width: rem(16), height: rem(16) }}
+                stroke={1.5}
+              />
+            }
+            component={Link}
+            href={LINKS.Dashboard.Characters.href}
+          >
+            My Characters
           </MenuItem>
 
           <MenuLabel>Settings</MenuLabel>

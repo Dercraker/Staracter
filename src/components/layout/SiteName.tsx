@@ -27,8 +27,8 @@ export const SiteName = ({
       href={LINKS.Landing.Landing.href}
       td="inherit"
       c="inherit"
+      className="select-none cursor-pointer"
     >
-      <div data-name="toto" className="toto align-center"></div>
       <Group gap="xs">
         {variant === 'Outline' ? (
           <LogoSvg size={logoSize} />

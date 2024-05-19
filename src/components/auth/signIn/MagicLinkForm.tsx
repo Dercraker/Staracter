@@ -46,6 +46,7 @@ const MagicLinkForm = () => {
         />
         <Button
           disabled={!magicLinkForm.isValid() || emailSignInMutation.isPending}
+          type="submit"
         >
           Sign in
         </Button>

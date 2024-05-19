@@ -66,9 +66,11 @@ model User {
   // For the Credentials provider
   passwordHash String?
 
-  sessions  Session[]
-  accounts  Account[]
-  feedbacks Feedback[]
+  sessions        Session[]
+  accounts        Account[]
+  feedbacks       Feedback[]
+  characters      Character[]
+  characterLikes  CharacterLike[]
 }
 
 model Feedback {
@@ -81,6 +83,59 @@ model Feedback {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Character {
+  id            String   @id @default(cuid())
+  publishDate   DateTime
+  name          String
+  userId        String?
+  user          User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  pictureId     String
+  fileId        String
+  files         File[]
+  Tag           CharacterTag[]
+  likes         CharacterLike[]
+  downloadCount Int      @default(0)
+}
+
+model File {
+  id           String     @id @default(cuid())
+  etag       String
+  bucket       String
+  fileName     String
+  originalName String
+  createAt     DateTime   @default(now())
+  size         Int
+  url         String
+  characterId  String?
+  character    Character? @relation(fields: [characterId], references: [id], onDelete: Cascade)
+}
+
+model Tag {
+  id           String     @id @default(cuid())
+  name       String
+  characterId  String?
+  characters CharacterTag[]
+}
+
+model CharacterTag {
+  characterId String
+  tagId       String
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  tag         Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([characterId, tagId])
+}
+
+model CharacterLike {
+  userId      String
+  characterId String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@id([userId, characterId])
 }
 
 enum UserPlan {

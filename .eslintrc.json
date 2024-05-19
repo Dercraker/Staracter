@@ -14,11 +14,10 @@
   },
   "rules": {
     "react/no-unescaped-entities": "off",
-    "no-console": "error",
+    "no-console": "warn",
     "complexity": ["error", 10],
     "no-empty-pattern": ["error", { "allowObjectPatternsAsParameters": true }],
     "no-await-in-loop": 1,
-    "no-return-await": 1,
     "no-eval": 1,
     "no-implied-eval": 1,
     "prefer-promise-reject-errors": 1,
@@ -41,8 +40,14 @@
     "@typescript-eslint/prefer-optional-chain": "warn",
     "@typescript-eslint/prefer-string-starts-ends-with": "error",
     "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/ban-types": [
       "error",
       {

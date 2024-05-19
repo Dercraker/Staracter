@@ -1,7 +1,18 @@
 import { prisma } from '@/lib/prisma';
 import { searchParamsCache } from '@/lib/searchParams';
 import type { PageParams } from '@/types/next';
-import { Badge, Button, Paper, Title } from '@mantine/core';
+import { LINKS } from '@/utils/NavigationLinks';
+import {
+  Alert,
+  Badge,
+  Button,
+  Center,
+  Group,
+  Paper,
+  Title,
+} from '@mantine/core';
+import { IconAlertTriangle } from '@tabler/icons-react';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 const RoutePage = async ({ searchParams }: PageParams) => {
@@ -11,7 +22,7 @@ const RoutePage = async ({ searchParams }: PageParams) => {
     return (
       <Paper radius="lg" p="xl" withBorder my="md">
         <Title order={2}>Email verified</Title>
-        <Button component="a" href="/account">
+        <Button component={Link} href={LINKS.Account.Profile.href}>
           Account
         </Button>
       </Paper>
@@ -20,13 +31,22 @@ const RoutePage = async ({ searchParams }: PageParams) => {
 
   if (!token) {
     return (
-      <Paper radius="lg" p="xl" withBorder my="md">
-        <Badge color="red">Error</Badge>
-        <Title order={2}>Invalid Token</Title>
-        <Button component="a" href="/account">
-          Account
-        </Button>
-      </Paper>
+      <Center>
+        <Alert
+          color="var(--mantine-color-red-9)"
+          title={
+            <Group>
+              <Badge color="red">Error</Badge> Invalid Token
+            </Group>
+          }
+          icon={<IconAlertTriangle />}
+          className="max-w-xs"
+        >
+          <Button component={Link} href={LINKS.Account.Profile.href} fullWidth>
+            Go to account
+          </Button>
+        </Alert>
+      </Center>
     );
   }
 
@@ -40,13 +60,22 @@ const RoutePage = async ({ searchParams }: PageParams) => {
 
   if (!email) {
     return (
-      <Paper radius="lg" p="xl" withBorder my="md">
-        <Badge color="red">Error</Badge>
-        <Title order={2}>Invalid Token</Title>
-        <Button component="a" href="/account">
-          Account
-        </Button>
-      </Paper>
+      <Center>
+        <Alert
+          color="var(--mantine-color-red-9)"
+          title={
+            <Group>
+              <Badge color="red">Error</Badge> Invalid Token
+            </Group>
+          }
+          icon={<IconAlertTriangle />}
+          className="max-w-xs"
+        >
+          <Button component={Link} href={LINKS.Account.Profile.href} fullWidth>
+            Go to account
+          </Button>
+        </Alert>
+      </Center>
     );
   }
 
@@ -58,13 +87,22 @@ const RoutePage = async ({ searchParams }: PageParams) => {
 
   if (!user) {
     return (
-      <Paper radius="lg" p="xl" withBorder my="md">
-        <Badge color="red">Error</Badge>
-        <Title order={2}>User Not Found</Title>
-        <Button component="a" href="/account">
-          Account
-        </Button>
-      </Paper>
+      <Center>
+        <Alert
+          color="var(--mantine-color-red-9)"
+          title={
+            <Group>
+              <Badge color="red">Error</Badge> User Not Found
+            </Group>
+          }
+          icon={<IconAlertTriangle />}
+          className="max-w-xs"
+        >
+          <Button component={Link} href={LINKS.Account.Profile.href} fullWidth>
+            Go to account
+          </Button>
+        </Alert>
+      </Center>
     );
   }
 
@@ -72,7 +110,7 @@ const RoutePage = async ({ searchParams }: PageParams) => {
     return (
       <Paper radius="lg" p="xl" withBorder my="md">
         <Title order={2}>Email Verified.</Title>
-        <Button component="a" href="/account">
+        <Button component={Link} href={LINKS.Account.Profile.href} fullWidth>
           Account
         </Button>
       </Paper>

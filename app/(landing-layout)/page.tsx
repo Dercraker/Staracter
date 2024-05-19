@@ -29,6 +29,7 @@ const RoutePage = async ({ searchParams }: PageParams) => {
       <Space h="xl" />
       <Stack>
         <SearchBar allTags={[]} />
+
         <CharacterList characters={characters} />
       </Stack>
       <Affix position={{ bottom: 20, right: 20 }}>

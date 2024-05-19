@@ -34,6 +34,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 's3.dercraker.fr',
         port: '',
         pathname: '/staracter-dev/**',

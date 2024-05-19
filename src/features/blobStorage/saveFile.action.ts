@@ -1,6 +1,7 @@
 'use server';
 
 import { env } from '@/lib/env/server';
+import { logger } from '@/lib/logger';
 import {
   createPresignedUrlToUpload,
   uploadToS3,
@@ -64,7 +65,7 @@ export const saveFileAction = authAction(
 
     return {
       fileName: blob.originalName,
-      url: `${getMinioUrl()}${blob.fileName}`,
+      url: blob.url,
       id: blob.id,
     } as BlobInfo;
   }

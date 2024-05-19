@@ -1,3 +1,4 @@
+import { env } from '@/lib/env/server';
 import { SiteConfig } from '@/utils/site-config';
 
 /**
@@ -23,7 +24,5 @@ export const getServerUrl = () => {
 };
 
 export const getMinioUrl = () => {
-  return process.env.NODE_ENV === 'development'
-    ? 'https://s3.dercraker.fr/staracter-dev/'
-    : 'https://s3.dercraker.fr/staracter/';
+  return `https://s3.dercraker.fr/${env.S3_BUCKET_NAME}/`;
 };

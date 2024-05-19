@@ -1,4 +1,5 @@
 import createJiti from 'jiti';
+import { env } from 'node:process';
 import { fileURLToPath } from 'node:url';
 const jiti = createJiti(fileURLToPath(import.meta.url));
 
@@ -41,13 +42,13 @@ const nextConfig = {
         protocol: 'https',
         hostname: 's3.dercraker.fr',
         port: '',
-        pathname: '/staracter-dev/**',
+        pathname: `/${env.S3_BUCKET_NAME}/**`,
       },
       {
         protocol: 'https',
         hostname: 's3.dercraker.fr',
         port: '',
-        pathname: '/staracter/**',
+        pathname: '/staracter-dev/**',
       },
     ],
   },

@@ -20,7 +20,6 @@ import { DownloadButton } from './downloadButton';
 export type Character3DCardProps = GetPaginatedCharacter;
 
 export const Character3DCard = async ({
-  Tag,
   _count,
   downloadCount,
   fileId,
@@ -38,7 +37,7 @@ export const Character3DCard = async ({
 
   return (
     <CardContainer className="inter-var">
-      <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-zinc-800 dark:border-white/[0.2] border-black/[0.1] w-80 h-96 rounded-xl">
+      <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-indigo-600/30 dark:bg-zinc-800 dark:border-white/[0.2] border-black/[0.1] w-80 h-96 rounded-xl">
         <CardItem translateZ="100" className="w-full">
           <AspectRatio ratio={16 / 9}>
             <Image

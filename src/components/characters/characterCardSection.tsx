@@ -15,6 +15,7 @@ import {
 import { IconHearts, IconUserQuestion } from '@tabler/icons-react';
 import moment from 'moment';
 import nextImage from 'next/image';
+import { DisplayCharacterName } from './displayCharacterName';
 
 export type CharacterCardSectionProps = GetPaginatedCharacter;
 
@@ -51,14 +52,7 @@ export const CharacterCardSection = async ({
       <Stack justify="space-between" h="100%">
         <Group justify="end" align="center" wrap="nowrap">
           <Stack gap={0} w="100%" ta="end">
-            <Text
-              fz="h2"
-              fw={700}
-              c="var(--mantine-color-blue-text)"
-              truncate="end"
-            >
-              {name}
-            </Text>
+            <DisplayCharacterName name={name} />
             <Text c="dimmed" fs="italic">
               {moment(publishDate).format('YYYY/MM/DD')}
             </Text>

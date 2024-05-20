@@ -40,15 +40,20 @@ export const LikeButton = ({
     },
   });
 
+  const handleUpdateLike = async () => {
+    await mutateAsync([characterId, authUser?.id as string]);
+  };
+
   return (
     <Group
       align="center"
       justify="center"
       gap={0}
-      onClick={async () => mutateAsync([characterId, authUser?.id as string])}
+      onClick={handleUpdateLike}
+      className="cursor-pointer"
     >
       <ActionIcon
-        variant="subtle"
+        variant="transparent"
         disabled={authUser === null}
         loading={isPending}
       >

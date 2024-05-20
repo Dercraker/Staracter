@@ -52,47 +52,45 @@ export const Character3DCard = async ({
           </AspectRatio>
         </CardItem>
         <Stack justify="space-between" className="px-4">
-          <Stack justify="space-between" h="100%">
-            <Group justify="end" align="center" wrap="nowrap">
-              <Stack gap={0} w="100%" ta="end">
-                <DisplayCharacterName name={name} />
-                <Text c="dimmed" fs="italic">
-                  {moment(publishDate).format('YYYY/MM/DD')}
-                </Text>
-              </Stack>
-            </Group>
+          <Group justify="end" align="center" wrap="nowrap">
+            <Stack gap={0} w="100%" ta="end">
+              <DisplayCharacterName name={name} />
+              <Text c="dimmed" fs="italic">
+                {moment(publishDate).format('YYYY/MM/DD')}
+              </Text>
+            </Stack>
+          </Group>
 
-            <Group gap="xs" align="flex-end" justify="space-between">
-              <Group c="var(--mantine-color-blue-text)">
-                <DownloadButton
-                  downloadCount={downloadCount}
-                  id={characterId}
-                  url={characterFile?.url as string}
-                />
-                <LikeButton
-                  likeCount={likes}
-                  authUser={authUser}
-                  characterId={characterId}
-                  liked={isLiked}
-                />
-                {!!authUser && authUser.id === user?.id && (
-                  <DeleteButton characterId={characterId} />
-                )}
-              </Group>
-              {user ? (
-                <Text fz="sm" c="dimmed">
-                  By : {displayName(user)}
-                </Text>
-              ) : (
-                <Group gap={0}>
-                  <IconUserQuestion color="var(--mantine-color-dimmed)" />
-                  <Text fz="sm" c="dimmed">
-                    Unknown user
-                  </Text>
-                </Group>
+          <Group gap="xs" align="flex-end" justify="space-between">
+            <Group c="var(--mantine-color-blue-text)">
+              <DownloadButton
+                downloadCount={downloadCount}
+                id={characterId}
+                url={characterFile?.url as string}
+              />
+              <LikeButton
+                likeCount={likes}
+                authUser={authUser}
+                characterId={characterId}
+                liked={isLiked}
+              />
+              {!!authUser && authUser.id === user?.id && (
+                <DeleteButton characterId={characterId} />
               )}
             </Group>
-          </Stack>
+            {user ? (
+              <Text fz="sm" c="dimmed">
+                By : {displayName(user)}
+              </Text>
+            ) : (
+              <Group gap={0}>
+                <IconUserQuestion color="var(--mantine-color-dimmed)" />
+                <Text fz="sm" c="dimmed">
+                  Unknown user
+                </Text>
+              </Group>
+            )}
+          </Group>
         </Stack>
       </CardBody>
     </CardContainer>

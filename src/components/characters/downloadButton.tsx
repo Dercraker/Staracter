@@ -34,8 +34,14 @@ export const DownloadButton = ({
   };
 
   return (
-    <Group align="center" justify="center" gap={0} onClick={handleDownload}>
-      <ActionIcon variant="subtle">
+    <Group
+      align="center"
+      justify="center"
+      gap={0}
+      onClick={handleDownload}
+      className="cursor-pointer"
+    >
+      <ActionIcon variant="transparent">
         <IconDownload color="var(--mantine-color-teal-7)" />
       </ActionIcon>
       {String(downloadCount)}

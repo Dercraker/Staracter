@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Group,
   ModalBody,
   ModalCloseButton,
   ModalContent,
@@ -62,9 +63,11 @@ export const DeleteButton = ({ characterId }: DeleteButtonProps) => {
 
   return (
     <>
-      <ActionIcon variant="subtle" onClick={open}>
-        <IconTrash color="var(--mantine-color-red-9)" />
-      </ActionIcon>
+      <Group onClick={open} className="cursor-pointer">
+        <ActionIcon variant="transparent">
+          <IconTrash color="var(--mantine-color-red-9)" />
+        </ActionIcon>
+      </Group>
       <ModalRoot opened={opened} onClose={close} centered>
         <ModalOverlay backgroundOpacity={0.55} blur={3} />
         <ModalContent>

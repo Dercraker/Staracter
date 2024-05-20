@@ -33,6 +33,9 @@ export const env = createEnv({
     S3_BUCKET_NAME: z.string(),
     S3_PORT: z.string(),
     S3_USE_SSL: z.string(),
+
+    //Config
+    POST_CHARACTER_LIMIT: z.string(),
   },
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
@@ -54,5 +57,6 @@ export const env = createEnv({
     S3_BUCKET_NAME: process.env.S3_BUCKET_NAME,
     S3_PORT: process.env.S3_PORT,
     S3_USE_SSL: process.env.S3_USE_SSL,
+    POST_CHARACTER_LIMIT: process.env.POST_CHARACTER_LIMIT,
   },
 });

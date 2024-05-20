@@ -1,4 +1,4 @@
-import { GetCharacterCountByUserIdQuery } from '@/features/character/dashboard/getCharacterCountByUserId.query';
+import { GetCharacterCountByUserQuery } from '@/features/character/dashboard/getCharacterCountByUser.query';
 import { GetTotalCharacterDownloadByUserIdQuery } from '@/features/character/dashboard/getTotalCharacterDownloadByUser.query';
 import { GetCharacterLikeCountByUserIdQuery } from '@/features/character/dashboard/getTotalCharacterLikeByUser.query';
 import { requiredAuth } from '@/lib/auth/helper';
@@ -16,7 +16,7 @@ import { Suspense } from 'react';
 
 const RoutePage = async () => {
   const user = await requiredAuth();
-  const characterCount = await GetCharacterCountByUserIdQuery(user.id);
+  const characterCount = await GetCharacterCountByUserQuery(user.id);
   const downloadCount = await GetTotalCharacterDownloadByUserIdQuery(user.id);
   const likeCount = await GetCharacterLikeCountByUserIdQuery(user.id);
 

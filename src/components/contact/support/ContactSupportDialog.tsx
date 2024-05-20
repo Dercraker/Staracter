@@ -65,15 +65,13 @@ export const ContactSupportDialog = (buttonProps: ButtonProps) => {
 
   return (
     <>
-      <Stack my="xl">
-        <Button
-          leftSection={<IconHelp />}
-          onClick={handleOpenModal}
-          {...buttonProps}
-        >
-          Contact Support
-        </Button>
-      </Stack>
+      <Button
+        leftSection={<IconHelp />}
+        onClick={handleOpenModal}
+        {...buttonProps}
+      >
+        Contact Support
+      </Button>
       <Modal.Root
         opened={isModalOpen}
         onClose={closeModal}

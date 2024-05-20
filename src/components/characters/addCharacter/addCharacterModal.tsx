@@ -11,7 +11,7 @@ import { MIME_TYPES } from '@mantine/dropzone';
 import { useForm, zodResolver } from '@mantine/form';
 import type { User } from '@prisma/client';
 import { IconDeviceFloppy, IconX } from '@tabler/icons-react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { AddCharacterDropFile } from './addCharacterDropFile';
 
@@ -22,7 +22,6 @@ export type AddCharacterModalProps = {
 };
 
 export const AddCharacterModal = (props: AddCharacterModalProps) => {
-  const queryClient = useQueryClient();
   const { SuccessNotify, ErrorNotify } = useNotify();
   const router = useRouter();
 
@@ -43,17 +42,11 @@ export const AddCharacterModal = (props: AddCharacterModalProps) => {
   });
 
   const addCharacterMutation = useMutation({
-    mutationFn: async (input: AddCharacterFormSchema) =>
-      await addCharacterAction(input),
-    onError: () =>
-      ErrorNotify({
-        title: 'Error',
-        message: 'Failed to add character',
-      } as NotifyDto),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['Characters'] });
-      queryClient.invalidateQueries({ queryKey: ['Characters', 'Last', '10'] });
-      queryClient.invalidateQueries({ queryKey: ['User', props.user.id] });
+    mutationFn: async (input: AddCharacterFormSchema) => {
+      const { serverError } = await addCharacterAction(input);
+
+      if (serverError) return ErrorNotify({ title: serverError });
+
       SuccessNotify({
         title: 'Success',
         message: 'Character added successfully',
@@ -62,6 +55,11 @@ export const AddCharacterModal = (props: AddCharacterModalProps) => {
       props.close();
       router.refresh();
     },
+    onError: () =>
+      ErrorNotify({
+        title: 'Error',
+        message: 'Failed to add character',
+      } as NotifyDto),
   });
 
   const deleteFileMutation = useMutation({

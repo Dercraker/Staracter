@@ -1,10 +1,15 @@
 'use client';
 
+import { GetCharacterCountByUserQuery } from '@/features/character/dashboard/getCharacterCountByUser.query';
+import { env } from '@/lib/env/server';
 import { ActionIcon, Button, Tooltip } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import type { User } from '@prisma/client';
 import { IconCirclePlus, IconUserPlus } from '@tabler/icons-react';
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { AddCharacterModal } from './addCharacterModal';
+import { LimitCharacterModal } from './limitCharacterModal';
 
 type AddCharacterButtonProps = {
   user: User | null;
@@ -13,12 +18,25 @@ type AddCharacterButtonProps = {
 export const AddCharacterButton = ({ user }: AddCharacterButtonProps) => {
   const [isModalOpen, { open: openModal, close: closeModal }] =
     useDisclosure(false);
+  const [canAddCharacter, setCanAddCharacter] = useState<boolean>(false);
 
   const handleOpenModal = () => {
     if (!user) return;
 
     openModal();
   };
+
+  useQuery({
+    queryKey: ['CharacterCount', user?.id],
+    queryFn: async () => {
+      const count = await GetCharacterCountByUserQuery(user?.id as string);
+
+      if (count >= Number(env.POST_CHARACTER_LIMIT)) {
+        setCanAddCharacter(false);
+      }
+    },
+    enabled: !!user,
+  });
 
   return (
     <>
@@ -45,7 +63,19 @@ export const AddCharacterButton = ({ user }: AddCharacterButtonProps) => {
       >
         <IconCirclePlus />
       </ActionIcon>
-      <AddCharacterModal isOpen={isModalOpen} close={closeModal} user={user!} />
+      {canAddCharacter ? (
+        <AddCharacterModal
+          isOpen={isModalOpen}
+          close={closeModal}
+          user={user!}
+        />
+      ) : (
+        <LimitCharacterModal
+          isOpen={isModalOpen}
+          close={closeModal}
+          user={user!}
+        />
+      )}
     </>
   );
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import { IncrementDownloadCountAction } from '@/features/character/incrementDownloadCount.action';
+import { IncrementDownloadCountAction } from '@/features/character/download/incrementDownloadCount.action';
 import { ActionIcon, Group } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
 import { useMutation } from '@tanstack/react-query';

@@ -2,7 +2,7 @@
 
 import { ActionError, action } from '@/lib/server-actions/safe-actions';
 import { z } from 'zod';
-import { GetCharacterByIdQuery } from './getCharacterById.query';
+import { GetCharacterByIdQuery } from '../getCharacterById.query';
 import { IncrementDownloadCountQuery } from './incrementDownloadCount.query';
 
 const IncrementDownloadCountSchema = z.object({

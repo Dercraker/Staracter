@@ -134,6 +134,7 @@ model CharacterLike {
   characterId String
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
 
   @@id([userId, characterId])
 }

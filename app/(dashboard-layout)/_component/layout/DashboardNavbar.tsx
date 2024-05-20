@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 export const DashboardNavbar = () => {
   return (
-    <AppShellNavbar>
+    <AppShellNavbar bg="var(--mantine-color-dark-9)">
       <Stack p="xs" h="100vh" justify="space-between">
         <Stack>
           <SiteName />

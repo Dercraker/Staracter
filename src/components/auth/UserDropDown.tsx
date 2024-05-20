@@ -3,6 +3,7 @@ import { displayName } from '@/utils/format/displayName';
 import { LINKS } from '@/utils/NavigationLinks';
 import {
   ActionIcon,
+  Box,
   Group,
   Menu,
   MenuDivider,
@@ -10,12 +11,12 @@ import {
   MenuItem,
   MenuLabel,
   MenuTarget,
-  Paper,
   rem,
   Text,
 } from '@mantine/core';
 import {
   IconChevronRight,
+  IconHearts,
   IconSettings,
   IconShieldLock,
   IconUsers,
@@ -53,7 +54,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
               justify="center"
               style={{ cursor: 'pointer' }}
             >
-              <Paper>
+              <Box>
                 <Group>
                   <ActionIcon variant="transparent" radius="xl" size="xl">
                     <AvatarImage user={{ ...user, email: user.email || '' }} />
@@ -62,7 +63,7 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
                     {displayName({ ...user, email: user.email || '' })}
                   </Text>
                 </Group>
-              </Paper>
+              </Box>
             </Group>
           )}
         </MenuTarget>
@@ -114,6 +115,19 @@ const UserDropDown = ({ user, variant = 'minimal' }: UserDropDownProps) => {
             href={LINKS.Dashboard.Characters.href}
           >
             My Characters
+          </MenuItem>
+          <MenuItem
+            leftSection={
+              <IconHearts
+                style={{ width: rem(16), height: rem(16) }}
+                stroke={1.5}
+                color="var(--mantine-color-pink-5)"
+              />
+            }
+            component={Link}
+            href={LINKS.Dashboard.LikedCharacters.href}
+          >
+            {LINKS.Dashboard.LikedCharacters.label}
           </MenuItem>
 
           <MenuLabel>Settings</MenuLabel>

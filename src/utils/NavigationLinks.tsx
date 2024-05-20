@@ -3,6 +3,7 @@ import type { NavigationLinksWithGroup } from '@/types/NavigationLinkWithGroup.s
 import {
   IconAlertSquareRounded,
   IconCoinEuro,
+  IconHearts,
   IconLayoutDashboard,
   IconMail,
   IconMailCheck,
@@ -73,7 +74,13 @@ export const LINKS = {
       label: 'My characters',
       href: '/characters',
       auth: true,
-      icon: <IconUsers />,
+      icon: <IconUsers color="var(--mantine-color-blue-7)" />,
+    },
+    LikedCharacters: {
+      label: 'Liked Characters',
+      href: '/like',
+      auth: true,
+      icon: <IconHearts color="var(--mantine-color-pink-5)" />,
     },
   },
   Legal: {
@@ -100,14 +107,6 @@ export const LINKS = {
       auth: true,
     },
   },
-  Character: {
-    All: {
-      label: 'Characters',
-      href: '/characters',
-      auth: false,
-      icon: <IconUsers />,
-    },
-  },
 };
 
 export const HEADER_LINKS: NavigationLinks = [];
@@ -116,11 +115,6 @@ export const ACCOUNT_LINKS: NavigationLinks = [
   LINKS.Account.Profile,
   LINKS.Account.Delete,
   LINKS.Account.Settings,
-];
-
-export const DASHBOARD_LINKS: NavigationLinks = [
-  LINKS.Dashboard.Dashboard,
-  LINKS.Dashboard.Characters,
 ];
 
 export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
@@ -137,7 +131,7 @@ export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
 export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
   {
     title: 'Your Content',
-    links: [LINKS.Dashboard.Characters],
+    links: [LINKS.Dashboard.Characters, LINKS.Dashboard.LikedCharacters],
   },
 ];
 

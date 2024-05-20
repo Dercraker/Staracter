@@ -1,7 +1,7 @@
 import { CharacterList } from '@/components/characters/characterList';
 import { PaginationComponent } from '@/components/pagination/pagination';
-import { GetCharacterCountByUserQuery } from '@/features/character/dashboard/getCharacterCountByUser.query';
-import { GetPaginatedCharactersByUserQuery } from '@/features/character/dashboard/getPagintedCharacterByUser.query';
+import { CountLikedCharactersByUserQuery } from '@/features/character/like/countLikedCharactersByUser.query';
+import { GetPaginatedLikedCharactersByUserQuery } from '@/features/character/like/getPaginatedLikedCharactersByUser.query';
 import { requiredAuth } from '@/lib/auth/helper';
 import { searchParamsCache } from '@/lib/searchParams';
 import type { PageParams } from '@/types/next';
@@ -21,21 +21,18 @@ const RoutePage = async ({ searchParams }: PageParams<{}>) => {
 
   const { page, pageSize } = searchParamsCache.parse(searchParams);
 
-  const characters = await GetPaginatedCharactersByUserQuery({
-    params: {
-      skip: page,
-      take: pageSize,
-    },
+  const characters = await GetPaginatedLikedCharactersByUserQuery({
+    params: { skip: page, take: pageSize },
     userId: user.id,
   });
 
-  const characterCount = await GetCharacterCountByUserQuery(user.id);
+  const characterCount = await CountLikedCharactersByUserQuery(user.id);
 
   return (
     <Container size="90vw">
       <Stack>
         <Box>
-          <Title>All your Characters</Title>
+          <Title>All Character you've liked</Title>
           <Divider />
         </Box>
         <CharacterList characters={characters} />

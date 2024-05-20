@@ -1,26 +1,21 @@
 import type { GetPaginatedCharacter } from '@/features/character/getPaginatedCharacters.query';
+import { IsCharacterLikeByUserQuery } from '@/features/character/like/IsCharacterLikeByUser.query';
 import { auth } from '@/lib/auth/helper';
 import { displayName } from '@/utils/format/displayName';
-import {
-  ActionIcon,
-  AspectRatio,
-  Group,
-  Image,
-  Stack,
-  Text,
-} from '@mantine/core';
-import { IconHearts, IconUserQuestion } from '@tabler/icons-react';
+import { AspectRatio, Group, Image, Stack, Text } from '@mantine/core';
+import { IconUserQuestion } from '@tabler/icons-react';
 import moment from 'moment';
 import nextImage from 'next/image';
 import { CardBody, CardContainer, CardItem } from '../ui/3d-card';
 import { DeleteButton } from './deleteButton';
 import { DisplayCharacterName } from './displayCharacterName';
 import { DownloadButton } from './downloadButton';
+import { LikeButton } from './likeButton';
 
 export type Character3DCardProps = GetPaginatedCharacter;
 
 export const Character3DCard = async ({
-  _count,
+  _count: { likes },
   downloadCount,
   fileId,
   files,
@@ -34,6 +29,11 @@ export const Character3DCard = async ({
 
   const characterFile = files.find((file) => file.id === fileId);
   const pictureFile = files.find((file) => file.id === pictureId);
+
+  const isLiked = await IsCharacterLikeByUserQuery({
+    characterId,
+    userId: authUser?.id as string,
+  });
 
   return (
     <CardContainer className="inter-var">
@@ -69,12 +69,12 @@ export const Character3DCard = async ({
                   id={characterId}
                   url={characterFile?.url as string}
                 />
-                <Group align="center" justify="center" gap={0}>
-                  <ActionIcon variant="subtle" disabled>
-                    <IconHearts color="var(--mantine-color-pink-5)" />{' '}
-                  </ActionIcon>
-                  {String(_count.likes)}
-                </Group>
+                <LikeButton
+                  likeCount={likes}
+                  authUser={authUser}
+                  characterId={characterId}
+                  liked={isLiked}
+                />
                 {!!authUser && authUser.id === user?.id && (
                   <DeleteButton characterId={characterId} />
                 )}

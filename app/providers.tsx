@@ -14,6 +14,7 @@ import { CustomCursor } from '@/components/ui/customCursor';
 import '@mantine/core/styles.layer.css';
 import '@mantine/dropzone/styles.css';
 import '@mantine/notifications/styles.css';
+import { ProgressBarProvider } from './progressBarProvider';
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
@@ -24,9 +25,10 @@ export const Providers = ({ children }: PropsWithChildren) => {
           <ReactQueryDevtools initialIsOpen={false} />
 
           <CustomCursor />
-
-          {children}
-          {env.NODE_ENV === 'development' && <MantineBreakpointIndicator />}
+          <ProgressBarProvider>
+            {children}
+            {env.NODE_ENV === 'development' && <MantineBreakpointIndicator />}
+          </ProgressBarProvider>
         </SessionProvider>
       </QueryClientProvider>
     </MantineProvider>

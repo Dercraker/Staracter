@@ -41,12 +41,16 @@ export const LikeButton = ({
   });
 
   return (
-    <Group align="center" justify="center" gap={0}>
+    <Group
+      align="center"
+      justify="center"
+      gap={0}
+      onClick={async () => mutateAsync([characterId, authUser?.id as string])}
+    >
       <ActionIcon
         variant="subtle"
         disabled={authUser === null}
         loading={isPending}
-        onClick={async () => mutateAsync([characterId, authUser?.id as string])}
       >
         <IconHearts
           color={

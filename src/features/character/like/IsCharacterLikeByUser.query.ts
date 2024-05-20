@@ -6,10 +6,14 @@ export const IsCharacterLikeByUserQuery = async ({
   characterId,
   userId,
 }: LikeCharacterSchema) => {
-  const isLiked = await prisma.characterLike.findFirst({
+  if (!userId) return false;
+
+  const isLiked = await prisma.characterLike.findUnique({
     where: {
-      characterId,
-      userId,
+      userId_characterId: {
+        userId,
+        characterId,
+      },
     },
   });
 

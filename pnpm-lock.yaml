@@ -92,6 +92,9 @@ dependencies:
   next-auth:
     specifier: 5.0.0-beta.11
     version: 5.0.0-beta.11(next@14.2.3)(react@18.3.1)
+  next-nprogress-bar:
+    specifier: ^2.3.12
+    version: 2.3.12
   next-safe-action:
     specifier: ^6.2.0
     version: 6.2.0(next@14.2.3)(react@18.3.1)
@@ -5438,6 +5441,15 @@ packages:
       react: 18.3.1
     dev: false
 
+  /next-nprogress-bar@2.3.12:
+    resolution:
+      {
+        integrity: sha512-BCsmNmssPY4QfYKux7cGYm/JmsM/n9TGMJJDyYPt7ckWyK8l43hMgi7g9d7u/IxCaEAx3pbzfg7Ity0zdlDnGA==,
+      }
+    dependencies:
+      nprogress: 0.2.0
+    dev: false
+
   /next-safe-action@6.2.0(next@14.2.3)(react@18.3.1):
     resolution:
       {
@@ -5549,6 +5561,13 @@ packages:
       }
     engines: { node: '>=0.10.0' }
     dev: true
+
+  /nprogress@0.2.0:
+    resolution:
+      {
+        integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==,
+      }
+    dev: false
 
   /nuqs@1.17.2(next@14.2.3):
     resolution:

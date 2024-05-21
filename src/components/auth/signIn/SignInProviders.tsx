@@ -61,8 +61,9 @@ export const SignInProviders = () => {
           <Divider label="Or" labelPosition="center" my="lg" />
         </>
       ) : null}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col">
         {/* ℹ️ Add provider you want to support here */}
+        {providers.google ? <ProviderButton providerId="google" /> : null}
         {providers.discord ? <ProviderButton providerId="discord" /> : null}
         {providers.github ? <ProviderButton providerId="github" /> : null}
       </div>

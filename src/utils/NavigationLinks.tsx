@@ -3,9 +3,12 @@ import type { NavigationLinksWithGroup } from '@/types/NavigationLinkWithGroup.s
 import {
   IconAlertSquareRounded,
   IconCoinEuro,
+  IconHearts,
   IconLayoutDashboard,
   IconMail,
+  IconMailCheck,
   IconUser,
+  IconUsers,
 } from '@tabler/icons-react';
 
 export const LINKS = {
@@ -13,16 +16,6 @@ export const LINKS = {
     Landing: {
       label: 'Home',
       href: '/',
-      auth: false,
-    },
-    LinkA: {
-      label: 'Link A',
-      href: '/#',
-      auth: false,
-    },
-    LinkB: {
-      label: 'Link B',
-      href: '/#',
       auth: false,
     },
   },
@@ -67,7 +60,7 @@ export const LINKS = {
       label: 'Verify Email',
       href: '/account/verify-email',
       auth: true,
-      icon: <IconMail />,
+      icon: <IconMailCheck />,
     },
   },
   Dashboard: {
@@ -77,11 +70,17 @@ export const LINKS = {
       auth: true,
       icon: <IconLayoutDashboard />,
     },
-    Users: {
-      label: 'Users',
-      href: '/users',
+    Characters: {
+      label: 'My characters',
+      href: '/characters',
       auth: true,
-      icon: <IconUser />,
+      icon: <IconUsers color="var(--mantine-color-blue-7)" />,
+    },
+    LikedCharacters: {
+      label: 'Liked Characters',
+      href: '/like',
+      auth: true,
+      icon: <IconHearts color="var(--mantine-color-pink-5)" />,
     },
   },
   Legal: {
@@ -110,26 +109,12 @@ export const LINKS = {
   },
 };
 
-export const HEADER_LINKS: NavigationLinks = [
-  LINKS.Landing.LinkA,
-  LINKS.Landing.LinkB,
-];
+export const HEADER_LINKS: NavigationLinks = [];
 
 export const ACCOUNT_LINKS: NavigationLinks = [
   LINKS.Account.Profile,
   LINKS.Account.Delete,
-  LINKS.Account.Billing,
   LINKS.Account.Settings,
-  // {
-  //   href: '/account/support',
-  //   title: 'Contact Support',
-  //   icon: <IconHelpOctagon />,
-  // },
-];
-
-export const DASHBOARD_LINKS: NavigationLinks = [
-  LINKS.Dashboard.Dashboard,
-  LINKS.Dashboard.Users,
 ];
 
 export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
@@ -145,15 +130,15 @@ export const ACCOUNT_NAVIGATION_MOBILE_LINKS: NavigationLinksWithGroup = [
 
 export const DASHBOARD_NAVIGATION_LINKS: NavigationLinksWithGroup = [
   {
-    title: 'Other',
-    links: [LINKS.Dashboard.Users],
+    title: 'Your Content',
+    links: [LINKS.Dashboard.Characters, LINKS.Dashboard.LikedCharacters],
   },
 ];
 
 export const FOOTER_LINKS: NavigationLinksWithGroup = [
   {
     title: 'About',
-    links: [LINKS.Landing.Landing, LINKS.Landing.LinkA, LINKS.Landing.LinkB],
+    links: [LINKS.Landing.Landing],
   },
   {
     title: 'Project',

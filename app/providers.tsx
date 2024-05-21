@@ -10,8 +10,11 @@ import { SessionProvider } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
 import './globals.scss';
 // import '@mantine/core/styles.css';
+import { CustomCursor } from '@/components/ui/customCursor';
 import '@mantine/core/styles.layer.css';
+import '@mantine/dropzone/styles.css';
 import '@mantine/notifications/styles.css';
+import { ProgressBarProvider } from './progressBarProvider';
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (
@@ -21,8 +24,11 @@ export const Providers = ({ children }: PropsWithChildren) => {
           <Notifications limit={5} position="top-right" />
           <ReactQueryDevtools initialIsOpen={false} />
 
-          {children}
-          {env.NODE_ENV === 'development' && <MantineBreakpointIndicator />}
+          <CustomCursor />
+          <ProgressBarProvider>
+            {children}
+            {env.NODE_ENV === 'development' && <MantineBreakpointIndicator />}
+          </ProgressBarProvider>
         </SessionProvider>
       </QueryClientProvider>
     </MantineProvider>

@@ -1,3 +1,4 @@
+import { env } from '@/lib/env/server';
 import { SiteConfig } from '@/utils/site-config';
 
 /**
@@ -20,4 +21,8 @@ export const getServerUrl = () => {
 
   // If we are in development, we return the localhost URL.
   return 'http://localhost:3000';
+};
+
+export const getMinioUrl = () => {
+  return `https://s3.dercraker.fr/${env.S3_BUCKET_NAME}/`;
 };

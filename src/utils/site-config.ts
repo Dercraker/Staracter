@@ -20,6 +20,6 @@ export const SiteConfig = {
     name: 'Dercraker',
   },
   auth: {
-    password: true as boolean,
+    password: false as boolean,
   },
 };

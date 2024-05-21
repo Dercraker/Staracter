@@ -1,0 +1,25 @@
+{
+  "Create Prisma Query": {
+    "prefix": "pquery",
+    "body": [
+      "import { prisma } from '@/lib/prisma';",
+      "import type { Prisma } from '@prisma/client';",
+      "",
+      "export const $1Query = async ($2) => {",
+      "  const $3 = await prisma$4;",
+      "",
+      "  return $3;",
+      "};",
+      "",
+      "export type $1Query = NonNullable<",
+      "  Prisma.PromiseReturnType<typeof $1Query>",
+      ">;",
+      "",
+      "export type $5 = $1Query extends (infer U)[]",
+      "  ? U",
+      "  : never;",
+      "",
+    ],
+    "description": "Create Prisma Query",
+  },
+}

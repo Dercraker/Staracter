@@ -11,3 +11,7 @@
 @layer tailwind-utilities {
   @tailwind utilities;
 }
+
+body {
+  cursor: none;
+}

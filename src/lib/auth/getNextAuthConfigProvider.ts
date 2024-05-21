@@ -6,6 +6,7 @@ import MagicLinkMail from '@email/MagicLinkEmail';
 import type { NextAuthConfig } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import GitHubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
 import ResendProvider from 'next-auth/providers/resend';
 import { getCredentialsProvider } from './credentialsProvider';
 
@@ -32,6 +33,13 @@ export const getNextAuthConfigProviders = (): Providers => {
       },
     }),
   ];
+
+  if (env.AUTH_GOOGLE_ID && env.AUTH_GOOGLE_SECRET)
+    providers.push(
+      GoogleProvider({
+        allowDangerousEmailAccountLinking: true,
+      })
+    );
 
   if (env.AUTH_DISCORD_ID && env.AUTH_DISCORD_SECRET)
     providers.push(

@@ -15,7 +15,7 @@ export const addCharacterAction = authAction(
       },
     });
 
-    if (playerCharacterCount >= Number(env.POST_CHARACTER_LIMIT))
+    if (playerCharacterCount <= Number(env.POST_CHARACTER_LIMIT))
       throw new ActionError(
         'You have reached the character limit. You cannot add more.'
       );

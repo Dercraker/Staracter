@@ -65,7 +65,7 @@ export const SearchBar = ({ allTags }: SearchBarProps) => {
         miw="20em"
         w="50vw"
         value={inputValue || ''}
-        placeholder="Input component"
+        placeholder="Search your favorite character"
         onChange={handleChange}
       />
       <Group className="select-none">

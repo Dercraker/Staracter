@@ -15,9 +15,7 @@ import {
 import { IconAlertTriangle } from '@tabler/icons-react';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
-import MagicLinkForm from './MagicLinkForm';
 import ProviderButton from './ProviderButton';
-import { SignInCredentialsAndMagicLinkForm } from './SignInCredentialsAndMagicLinkForm';
 
 export const SignInProviders = () => {
   const { data: providers, isPending } = useQuery({
@@ -49,7 +47,7 @@ export const SignInProviders = () => {
   }
   return (
     <Container>
-      {providers.resend && !providers.credentials ? (
+      {/* {providers.resend && !providers.credentials ? (
         <>
           <MagicLinkForm />
           <Divider label="Or" labelPosition="center" my="lg" />
@@ -60,12 +58,12 @@ export const SignInProviders = () => {
           <SignInCredentialsAndMagicLinkForm />
           <Divider label="Or" labelPosition="center" my="lg" />
         </>
-      ) : null}
+      ) : null} */}
       <div className="flex flex-col">
         {/* ℹ️ Add provider you want to support here */}
         {providers.google ? <ProviderButton providerId="google" /> : null}
         {providers.discord ? <ProviderButton providerId="discord" /> : null}
-        {providers.github ? <ProviderButton providerId="github" /> : null}
+        {/* {providers.github ? <ProviderButton providerId="github" /> : null} */}
       </div>
       {providers.credentials ? (
         <Group>

@@ -11,9 +11,11 @@ import { MIME_TYPES } from '@mantine/dropzone';
 import { useForm, zodResolver } from '@mantine/form';
 import type { User } from '@prisma/client';
 import { IconDeviceFloppy, IconX } from '@tabler/icons-react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { AddCharacterDropFile } from './addCharacterDropFile';
+import { useSession } from 'next-auth/react';
+import { characterKeys } from '@/features/character/characterKeys.factory';
 
 export type AddCharacterModalProps = {
   isOpen: boolean;
@@ -22,6 +24,9 @@ export type AddCharacterModalProps = {
 };
 
 export const AddCharacterModal = (props: AddCharacterModalProps) => {
+  const session = useSession();
+  const queryClient = useQueryClient();
+
   const { SuccessNotify, ErrorNotify } = useNotify();
   const router = useRouter();
 
@@ -54,6 +59,11 @@ export const AddCharacterModal = (props: AddCharacterModalProps) => {
       addCharacterForm.reset();
       props.close();
       router.refresh();
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: characterKeys.countByUser(session.data?.user.id as string),
+      });
     },
     onError: () =>
       ErrorNotify({

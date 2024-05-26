@@ -1,5 +1,6 @@
 'use client';
 
+import { characterKeys } from '@/features/character/characterKeys.factory';
 import { DeleteCharacterByIdAction } from '@/features/character/deleteCharacterById.action';
 import useNotify from '@/hook/useNotify';
 import { logger } from '@/lib/logger';
@@ -21,7 +22,8 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconTrash, IconX } from '@tabler/icons-react';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 export type DeleteButtonProps = {
@@ -32,6 +34,8 @@ export const DeleteButton = ({ characterId }: DeleteButtonProps) => {
   const [opened, { open, close }] = useDisclosure(false);
   const { ErrorNotify, SuccessNotify } = useNotify();
   const router = useRouter();
+  const queryClient = useQueryClient();
+  const session = useSession();
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (characterId: string) =>
@@ -49,6 +53,9 @@ export const DeleteButton = ({ characterId }: DeleteButtonProps) => {
       }
 
       SuccessNotify({ title: 'Character deleted' });
+      queryClient.invalidateQueries({
+        queryKey: characterKeys.countByUser(session.data?.user.id as string),
+      });
       router.refresh();
     },
 

@@ -3,10 +3,12 @@
 import { LikeCharacterAction } from '@/features/character/like/likeCharacter.action';
 import useNotify from '@/hook/useNotify';
 import { ActionIcon, Group } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { IconHearts } from '@tabler/icons-react';
 import { useMutation } from '@tanstack/react-query';
 import type { User } from 'next-auth';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export type LikeButtonProps = {
   likeCount: number;
@@ -21,8 +23,20 @@ export const LikeButton = ({
   characterId,
   liked,
 }: LikeButtonProps) => {
-  const router = useRouter();
   const { ErrorNotify, SuccessNotify } = useNotify();
+  const router = useRouter();
+  const [totalLike, setTotalLike] = useState(likeCount);
+  const [isLiked, { open: likeCard, close: dislikeCard }] =
+    useDisclosure(liked);
+
+  useEffect(() => {
+    if (liked) likeCard();
+    else dislikeCard();
+  }, [liked]);
+
+  useEffect(() => {
+    setTotalLike(likeCount);
+  }, [likeCount]);
 
   const { isPending, mutateAsync } = useMutation({
     mutationFn: async ([characterId, userId]: [string, string]) => {
@@ -37,6 +51,15 @@ export const LikeButton = ({
       });
 
       router.refresh();
+    },
+    onMutate() {
+      if (isLiked) {
+        dislikeCard();
+        setTotalLike((prev) => prev - 1);
+      } else {
+        likeCard();
+        setTotalLike((prev) => prev + 1);
+      }
     },
   });
 
@@ -59,13 +82,13 @@ export const LikeButton = ({
       >
         <IconHearts
           color={
-            liked
+            isLiked
               ? 'var(--mantine-color-yellow-8)'
               : 'var(--mantine-color-pink-5)'
           }
         />{' '}
       </ActionIcon>
-      {String(likeCount)}
+      {String(totalLike)}
     </Group>
   );
 };

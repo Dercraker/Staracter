@@ -1,7 +1,7 @@
 'use client';
 
-import { GetCharacterCountByUserQuery } from '@/features/character/dashboard/getCharacterCountByUser.query';
-import { env } from '@/lib/env/server';
+import { characterKeys } from '@/features/character/characterKeys.factory';
+import { UserCanAddCharacterAction } from '@/features/character/dashboard/userCanAddCharacter.action';
 import { ActionIcon, Button, Tooltip } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import type { User } from '@prisma/client';
@@ -27,15 +27,14 @@ export const AddCharacterButton = ({ user }: AddCharacterButtonProps) => {
   };
 
   useQuery({
-    queryKey: ['CharacterCount', user?.id],
+    queryKey: characterKeys.countByUser(user?.id || ''),
     queryFn: async () => {
-      const count = await GetCharacterCountByUserQuery(user?.id as string);
+      const { data } = await UserCanAddCharacterAction(null);
 
-      if (count >= Number(env.POST_CHARACTER_LIMIT)) {
-        setCanAddCharacter(false);
-      }
+      setCanAddCharacter(data || false);
     },
-    enabled: !!user,
+    enabled: user?.id != null,
+    staleTime: -1,
   });
 
   return (
